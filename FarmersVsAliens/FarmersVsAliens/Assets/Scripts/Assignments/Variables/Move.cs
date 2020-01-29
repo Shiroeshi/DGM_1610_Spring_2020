@@ -4,6 +4,14 @@ using UnityEngine;
 
 public class Move : MonoBehaviour
 {
+    //Declaration
+    public float speed;
+    public float verticalInput;
+    public float horizontalInput;
+    public float turnSpeed;
+    
+    
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -13,12 +21,16 @@ public class Move : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(0, 0, 0.05f); //Using the f as the end identifies it as a float command so we dont have to make a variable to track it.
-                                // (x,y,z)
+        verticalInput = Input.GetAxis("Vertical");  //GetAxis is keymapping. Input keeps track of the inputs within the argument. 
+        horizontalInput = Input.GetAxis("Horizontal");
+
+        transform.Translate(Vector3.forward * speed * Time.deltaTime * verticalInput); //Using the f as the end identifies it as a float command so we dont have to make a variable to track it. 
+        transform.Rotate(Vector3.up * turnSpeed * Time.deltaTime * horizontalInput);
+                                // (x,y,z) Using the vector method optimizes it so we set it in unity instead. 
 
     }
 
-
+    /*
     // Detect collision with another object
     void OnCollisionEnter(Collision other)  //  This code runs when actual collision is happening (When a hitbox lands on a hurtbox)
     {
@@ -41,4 +53,5 @@ public class Move : MonoBehaviour
     {
         Debug.Log("You are enter trigger!");
     }
+    */
 }
