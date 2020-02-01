@@ -6,8 +6,8 @@ TagManager:
   tags:
   - Floor
   - Obstacle
-  - Track
   - Wall
+  - Funnel
   layers:
   - Default
   - TransparentFX

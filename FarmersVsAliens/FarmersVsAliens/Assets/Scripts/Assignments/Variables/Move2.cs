@@ -19,7 +19,7 @@ public class Move2 : MonoBehaviour
     void OnCollisionEnter(Collision other)  
     {
 
-        if (other.gameObject.CompareTag("Track"))
+        if (other.gameObject.CompareTag("Funnel"))
         {
             Debug.Log("Wheeeeeeee!");
         }
