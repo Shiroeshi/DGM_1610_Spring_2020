@@ -8,6 +8,7 @@ TagManager:
   - Obstacle
   - Wall
   - Funnel
+  - playerChar
   layers:
   - Default
   - TransparentFX
