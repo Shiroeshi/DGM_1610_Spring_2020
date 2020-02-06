@@ -9,6 +9,7 @@ TagManager:
   - Wall
   - Funnel
   - playerChar
+  - gameObject
   layers:
   - Default
   - TransparentFX
