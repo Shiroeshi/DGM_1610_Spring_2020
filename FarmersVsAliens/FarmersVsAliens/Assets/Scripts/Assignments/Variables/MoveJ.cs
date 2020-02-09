@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class MoveJ : MonoBehaviour
 {
-    public float speed;
+    public float speed = 2f;
     public float verticalInput;
     public float horizontalInput;
-    public float turnSpeed;
+    public float turnSpeed = 50f;
   
 
     // Start is called before the first frame update
