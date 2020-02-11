@@ -9,6 +9,8 @@ public class Move : MonoBehaviour
     public float verticalInput;
     public float horizontalInput;
     public float turnSpeed;
+
+    public GameObject projectilePrefab; 
     
     
     
@@ -27,6 +29,12 @@ public class Move : MonoBehaviour
         transform.Translate(Vector3.forward * speed * Time.deltaTime * verticalInput); //Using the f as the end identifies it as a float command so we dont have to make a variable to track it. 
         transform.Rotate(Vector3.up * turnSpeed * Time.deltaTime * horizontalInput);
                                 // (x,y,z) Using the vector method optimizes it so we set it in unity instead. 
+
+        if(Input.GetKeyDown(KeyCode.Space)) //Getkeydown tracks a key only when it is fully pressed
+        {
+            Instantiate(projectilePrefab, transform.position, projectilePrefab.transform.rotation); // Instantiate creates the object into the scene. The first point makes the object, while the second and third manipulate the object.
+                      
+        }  
 
     }
 
