@@ -27,7 +27,7 @@ public class MoveJ : MonoBehaviour
 
         if(Input.GetKey("space"))
         {
-            Debug.Log("You are hitting the space bar");
+            
             transform.Translate(0, 0.15f, 0 * Time.deltaTime);
         }
 
