@@ -8,7 +8,8 @@ public class MoveJ : MonoBehaviour
     public float verticalInput;
     public float horizontalInput;
     public float turnSpeed = 50f;
-  
+    public float jumpHeight;
+    public float jumpRate = 0.15f;
 
     // Start is called before the first frame update
     void Start()
@@ -25,12 +26,17 @@ public class MoveJ : MonoBehaviour
         transform.Translate(Vector3.forward * speed * Time.deltaTime * verticalInput); 
         transform.Rotate(Vector3.up * turnSpeed * Time.deltaTime * horizontalInput);
 
-        if(Input.GetKey("space"))
+        /*if(Input.GetKeyDown("space"))
         {
             
-            transform.Translate(0, 0.15f, 0 * Time.deltaTime);
+            transform.Translate(0, 6, 0 * Time.deltaTime);
         }
-
+        */
+        if (Input.GetKey("space"))
+        {
+            jumpHeight += jumpRate;
+            transform.Translate(0, jumpHeight, 0 * Time.deltaTime);
+        }
     }
 
     void OnTriggerEnter(Collider Other)
