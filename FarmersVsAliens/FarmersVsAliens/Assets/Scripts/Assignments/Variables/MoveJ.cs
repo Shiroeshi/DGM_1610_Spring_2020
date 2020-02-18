@@ -26,17 +26,12 @@ public class MoveJ : MonoBehaviour
         transform.Translate(Vector3.forward * speed * Time.deltaTime * verticalInput); 
         transform.Rotate(Vector3.up * turnSpeed * Time.deltaTime * horizontalInput);
 
-        /*if(Input.GetKeyDown("space"))
+        if(Input.GetKey("space"))
         {
             
-            transform.Translate(0, 6, 0 * Time.deltaTime);
+            transform.Translate(0, .15f, 0 * Time.deltaTime);
         }
-        */
-        if (Input.GetKey("space"))
-        {
-            jumpHeight += jumpRate;
-            transform.Translate(0, jumpHeight, 0 * Time.deltaTime);
-        }
+        
     }
 
     void OnTriggerEnter(Collider Other)
