@@ -10,6 +10,7 @@ TagManager:
   - Funnel
   - playerChar
   - gameObject
+  - Pick up
   layers:
   - Default
   - TransparentFX
