@@ -249,6 +249,13 @@ MonoBehaviour:
   jumpVector: {x: 0, y: 9, z: 0}
   speed: 10
   turnSpeed: 50
+  initialVelocity: 0
+  finalVelocity: 500
+  currentVelocity: 0
+  accelRate: 10
+  decelRate: 50
+  power: 500
+  accel: 10
 --- !u!65 &171139925
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -618,13 +625,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1177430101}
-  m_LocalRotation: {x: 0.04469769, y: -0.01717599, z: -0.0057298825, w: 0.99883646}
-  m_LocalPosition: {x: -17.27, y: 16.824028, z: -12.721109}
+  m_LocalRotation: {x: 0.14002538, y: -0.016549218, z: -0.007346392, w: 0.98998237}
+  m_LocalPosition: {x: -17.27, y: 19.568, z: -24.27}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 5.1120005, y: -2.0040002, z: -0.74700004}
+  m_LocalEulerAnglesHint: {x: 16.081001, y: -2.0770001, z: -1.144}
 --- !u!114 &1177430105
 MonoBehaviour:
   m_ObjectHideFlags: 0

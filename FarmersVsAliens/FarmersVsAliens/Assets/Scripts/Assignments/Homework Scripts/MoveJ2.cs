@@ -9,10 +9,20 @@ public class MoveJ2 : MonoBehaviour
     public Vector3 jumpVector;
     public float speed = 2f;
     public float turnSpeed = 50f;
+    public float initialVelocity = 0.0f;
+    public float finalVelocity = 500.0f;
+    public float currentVelocity = 0.0f;
+    public float accelRate = 10.0f;
+    public float decelRate = 50.0f;
+    public float power = 500.0f;
+    public float accel = 10f;
+
 
     // Update is called once per frame
     void Update()
     {
+        power = power + (Time.deltaTime * accel);
+
         verticalInput = Input.GetAxis("Vertical");  //GetAxis is keymapping. Input keeps track of the inputs within the argument. 
         horizontalInput = Input.GetAxis("Horizontal");
 
@@ -27,7 +37,18 @@ public class MoveJ2 : MonoBehaviour
             transform.Rotate(Vector3.up * turnSpeed * Time.deltaTime * horizontalInput);
 
             GetComponent<Rigidbody>().AddForce(jumpVector, ForceMode.VelocityChange);
+
+            currentVelocity = currentVelocity + (accelRate * Time.deltaTime);
         }
+
+       /* else
+        {
+            currentVelocity = currentVelocity - (decelRate * Time.deltaTime);
+        }
+       */
+        currentVelocity = Mathf.Clamp(currentVelocity, initialVelocity, finalVelocity);
+         
+        // transform.Translate(0, 0, power);
     }
 }
     
