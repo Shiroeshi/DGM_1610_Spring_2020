@@ -13,7 +13,7 @@ public class EnemyHealth : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        currentHealth = maxHealth   // This sets us to always have max health at the beginning of the game.
+        currentHealth = maxHealth;   // This sets us to always have max health at the beginning of the game.
     }
 
     public void TakeDamage(int amount)
