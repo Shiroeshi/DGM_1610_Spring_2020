@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7319999680671475090}
   - component: {fileID: 7319999680671475091}
   - component: {fileID: 7319999680671475054}
-  - component: {fileID: 4036882534680759046}
+  - component: {fileID: 9094948646076952426}
   m_Layer: 0
   m_Name: Projectile
   m_TagString: Untagged
@@ -126,7 +126,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 50
---- !u!114 &4036882534680759046
+--- !u!114 &9094948646076952426
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -135,7 +135,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 7319999680671475092}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b0837d9f7ad054458eb0e743a9e3e44, type: 3}
+  m_Script: {fileID: 11500000, guid: 51019448001abac48abe8f0c90146023, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeToDestroy: 5
+  damage: 1
+  time: 1

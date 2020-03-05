@@ -195,7 +195,7 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 256
-  initialVelocity: 0
+  initialVelocity: 10
   finalVelocity: 500
   currentVelocity: 0
   accelerationRate: 1000

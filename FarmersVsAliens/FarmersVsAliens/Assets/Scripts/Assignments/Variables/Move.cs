@@ -10,6 +10,11 @@ public class Move : MonoBehaviour
     public float horizontalInput;
     public float turnSpeed;
 
+    public float jumpHeight;
+    public bool isGrounded;
+
+    private Rigidbody rb;
+
     public GameObject projectilePrefab; 
     
     
@@ -17,7 +22,7 @@ public class Move : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        rb = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -30,12 +35,35 @@ public class Move : MonoBehaviour
         transform.Rotate(Vector3.up * turnSpeed * Time.deltaTime * horizontalInput);
                                 // (x,y,z) Using the vector method optimizes it so we set it in unity instead. 
 
-        if(Input.GetKeyDown(KeyCode.Space)) //Getkeydown tracks a key only when it is fully pressed
+        if(Input.GetKeyDown(KeyCode.F)) //Getkeydown tracks a key only when it is fully pressed
         {
             Instantiate(projectilePrefab, transform.position, projectilePrefab.transform.rotation); // Instantiate creates the object into the scene. The first point makes the object, while the second and third manipulate the object.
                       
         }  
 
+        if(Input.GetKeyDown(KeyCode.Space) && isGrounded)
+        {
+            rb.AddForce(Vector3.up * jumpHeight * 1000 * Time.deltaTime);
+            
+        }
+    }
+
+    private void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.CompareTag("Floor") || other.gameObject.CompareTag("Obstacle")) // Using this second portion, we can make it so that we can jump again off of a wall/osbtacle
+        {
+            isGrounded = true;
+            Debug.Log("Touching floor");
+        }
+    }
+
+    private void OnCollisionExit(Collision other)
+    {
+        if (other.gameObject.CompareTag("Floor") || other.gameObject.CompareTag("Obstacle"))
+        {
+            isGrounded = false;
+            Debug.Log("Not touching floor");
+        }
     }
 
     /*

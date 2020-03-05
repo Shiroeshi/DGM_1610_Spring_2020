@@ -38,14 +38,9 @@ public class MoveJ2 : MonoBehaviour
 
             GetComponent<Rigidbody>().AddForce(jumpVector, ForceMode.VelocityChange);
 
-            currentVelocity = currentVelocity + (accelRate * Time.deltaTime);
+           //  currentVelocity = currentVelocity + (accelRate * Time.deltaTime);
         }
 
-       /* else
-        {
-            currentVelocity = currentVelocity - (decelRate * Time.deltaTime);
-        }
-       */
         currentVelocity = Mathf.Clamp(currentVelocity, initialVelocity, finalVelocity);
          
         // transform.Translate(0, 0, power);
