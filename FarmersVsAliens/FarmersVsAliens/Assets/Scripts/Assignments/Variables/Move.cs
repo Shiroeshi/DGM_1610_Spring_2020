@@ -9,8 +9,9 @@ public class Move : MonoBehaviour
     public float verticalInput;
     public float horizontalInput;
     public float turnSpeed;
+    public float accelSpeed = 1000f;
 
-    public float jumpHeight;
+    public float jumpHeight = 50f;
     public bool isGrounded;
 
     private Rigidbody rb;
@@ -63,6 +64,7 @@ public class Move : MonoBehaviour
         {
             isGrounded = false;
             Debug.Log("Not touching floor");
+            rb.AddForce(Vector3.forward * accelSpeed * Time.deltaTime);
         }
     }
 

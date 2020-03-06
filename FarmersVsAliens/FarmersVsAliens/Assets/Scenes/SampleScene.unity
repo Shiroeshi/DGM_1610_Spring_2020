@@ -1422,7 +1422,7 @@ PrefabInstance:
     - target: {fileID: 8528787203185991031, guid: f479986edeb3cd84eb73f1a86e020c63,
         type: 3}
       propertyPath: m_IsKinematic
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8528787203185991031, guid: f479986edeb3cd84eb73f1a86e020c63,
         type: 3}

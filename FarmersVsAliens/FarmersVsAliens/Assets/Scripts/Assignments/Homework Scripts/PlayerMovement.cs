@@ -17,8 +17,9 @@ public class PlayerMovement : MonoBehaviour
     public float initialVelocity = 0.0f;
     public float finalVelocity = 500.0f;
     public float currentVelocity = 0f;
-    public float accelerationRate = 1000f;
+    public float accelerationRate = 10f;
     public float descelerationRate = 1f;
+    private CharacterController cc;
 
     Vector3 velocity;
     private bool isGrounded;
@@ -26,7 +27,7 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        cc = GetComponent<CharacterController>(); 
     }
 
     // Update is called once per frame
@@ -36,7 +37,7 @@ public class PlayerMovement : MonoBehaviour
 
         if(isGrounded && velocity.y < 0)
         {
-            velocity.y = -1f;
+            velocity.y = -2f;
             currentVelocity = 0f;
         }
 
@@ -53,26 +54,13 @@ public class PlayerMovement : MonoBehaviour
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
             currentVelocity = currentVelocity + (accelerationRate * Time.deltaTime);
             transform.Translate(0, 0, currentVelocity);
+            Debug.Log("Is Grounded");
         }
 
-        else
+        if (isGrounded == false)
         {
-            currentVelocity = currentVelocity - (descelerationRate * Time.deltaTime);
-            if(currentVelocity > 0)
-            {
-                transform.Translate(0, 0, currentVelocity);
-                
-            }
-            else
-            {
-                transform.Translate(0, 0, 0);
-            }
+            cc.Move(Vector3.forward * accelerationRate * Time.deltaTime);
+            Debug.Log("Not Grounded");
         }
-
-        currentVelocity = Mathf.Clamp01(currentVelocity * initialVelocity * finalVelocity);
-
-        velocity.y += gravity * Time.deltaTime;
-
-        controller.Move(velocity * Time.deltaTime);
     }
 }
