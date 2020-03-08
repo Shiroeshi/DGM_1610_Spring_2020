@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyHealth : MonoBehaviour
 {
                                     // This is all going to be applied to enemy prefabs.
-    public int currentHealth;
+    public int currentHealth = 3;
     public int maxHealth = 3;
     public Transform spawnPoint;
     public int points;
@@ -22,7 +22,7 @@ public class EnemyHealth : MonoBehaviour
         if(currentHealth <= 0)
         {
             //Keep score at 0
-            currentHealth = 0;
+            //currentHealth = 0;
             print("Enemy is die");
             // Add points to score for killing enemy
             //scoreManager.Addpoints(points);   we'll use this later
@@ -31,6 +31,11 @@ public class EnemyHealth : MonoBehaviour
             transform.rotation = spawnPoint.rotation;
             // Restart enemy health
             currentHealth = maxHealth;
+        }
+
+        if (currentHealth >= 0)
+        {
+            Destroy(gameObject);
         }
     }
 

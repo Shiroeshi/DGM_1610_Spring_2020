@@ -11,6 +11,8 @@ TagManager:
   - playerChar
   - gameObject
   - Pick up
+  - Enemy
+  - Bullet
   layers:
   - Default
   - TransparentFX

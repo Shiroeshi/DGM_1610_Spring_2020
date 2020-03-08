@@ -16,7 +16,7 @@ public class Move : MonoBehaviour
 
     private Rigidbody rb;
 
-    public GameObject projectilePrefab; 
+    public Rigidbody projectilePrefab; 
     
     
     
@@ -36,10 +36,11 @@ public class Move : MonoBehaviour
         transform.Rotate(Vector3.up * turnSpeed * Time.deltaTime * horizontalInput);
                                 // (x,y,z) Using the vector method optimizes it so we set it in unity instead. 
 
-        if(Input.GetKeyDown(KeyCode.F)) //Getkeydown tracks a key only when it is fully pressed
+        if(Input.GetKeyDown(KeyCode.Mouse0)) //Getkeydown tracks a key only when it is fully pressed
         {
-            Instantiate(projectilePrefab, transform.position, projectilePrefab.transform.rotation); // Instantiate creates the object into the scene. The first point makes the object, while the second and third manipulate the object.
-                      
+            Rigidbody shootPill;
+            shootPill =  Instantiate(projectilePrefab, transform.position, transform.rotation) as Rigidbody; // Instantiate creates the object into the scene. The first point makes the object, while the second and third manipulate the object.
+            shootPill.velocity = transform.TransformDirection(Vector3.forward * 100);        
         }  
 
         if(Input.GetKeyDown(KeyCode.Space) && isGrounded)
