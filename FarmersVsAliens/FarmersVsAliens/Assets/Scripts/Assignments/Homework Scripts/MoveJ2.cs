@@ -16,6 +16,8 @@ public class MoveJ2 : MonoBehaviour
     public float decelRate = 50.0f;
     public float power = 500.0f;
     public float accel = 10f;
+    public bool isGrounded;
+    
 
 
     // Update is called once per frame
@@ -29,7 +31,7 @@ public class MoveJ2 : MonoBehaviour
         transform.Translate(Vector3.forward * speed * Time.deltaTime * verticalInput); //Using the f as the end identifies it as a float command so we dont have to make a variable to track it. 
         transform.Rotate(Vector3.up * turnSpeed * Time.deltaTime * horizontalInput);
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
            
 
@@ -44,6 +46,25 @@ public class MoveJ2 : MonoBehaviour
         currentVelocity = Mathf.Clamp(currentVelocity, initialVelocity, finalVelocity);
          
         // transform.Translate(0, 0, power);
+    
+    
+    }
+    private void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.CompareTag("Floor") || other.gameObject.CompareTag("Obstacle")) // Using this second portion, we can make it so that we can jump again off of a wall/osbtacle
+        {
+            isGrounded = true;
+            Debug.Log("Touching floor");
+        }
+    }
+
+    private void OnCollisionExit(Collision other)
+    {
+        if (other.gameObject.CompareTag("Floor") || other.gameObject.CompareTag("Obstacle"))
+        {
+            isGrounded = false;
+            Debug.Log("Not touching floor");
+        }
     }
 }
     
