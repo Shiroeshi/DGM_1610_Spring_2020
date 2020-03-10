@@ -143,7 +143,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 96b8de83cc83f2f48b924370dff16a5e, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 61f843eb0c5b11845a6de732941f5822, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -229,6 +229,29 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &76042191
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 76042188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a42b114438501948953f14e83f141c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  recoilPosition: {fileID: 76042189}
+  rotationPoint: {fileID: 76042189}
+  positionalRecoilSpeed: 8
+  rotationalRecoilSpeed: 8
+  positionalReturnSpeed: 18
+  rotationalReturnSpeed: 36
+  RecoilRotation: {x: 10, y: 5, z: 7}
+  RecoilKickBack: {x: 0.015, y: 0, z: -0.2}
+  RecoilRotationAim: {x: 10, y: 4, z: 6}
+  RecoilKickBackAim: {x: 0.015, y: 0, z: -0.2}
+  aiming: 0
 --- !u!1001 &89677650
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -669,7 +692,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1177430104}
   - component: {fileID: 1177430103}
-  - component: {fileID: 1177430102}
+  - component: {fileID: 1177430105}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -677,14 +700,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &1177430102
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1177430101}
-  m_Enabled: 1
 --- !u!20 &1177430103
 Camera:
   m_ObjectHideFlags: 0
@@ -742,6 +757,24 @@ Transform:
   m_Father: {fileID: 171139928}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 16.081001, y: -2.0770001, z: -1.144}
+--- !u!114 &1177430105
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1177430101}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6681d2494fad8794386a0acfda08151a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jumpyBoi: {fileID: 171139929}
+  rotationSpeed: 6
+  returnSpeed: 25
+  RecoilRotation: {x: 2, y: 2, z: 2}
+  RecoilRotationAiming: {x: 0.5, y: 0.5, z: 1.5}
+  aiming: 0
 --- !u!1 &1259728678
 GameObject:
   m_ObjectHideFlags: 0
@@ -969,7 +1002,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: fea3ee2a05a000f4dba1ee247e455497,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.0639032
+      value: 1.319
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: fea3ee2a05a000f4dba1ee247e455497,
         type: 3}
