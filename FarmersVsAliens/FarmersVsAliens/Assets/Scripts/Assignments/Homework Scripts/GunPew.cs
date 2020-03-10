@@ -50,20 +50,20 @@ public class GunPew : MonoBehaviour
     void Update()
     {
   
-        if (Input.GetKeyDown("mouse 0"))
+        if (Input.GetKeyDown("Fire1"))
         {
             Fire();
             sound.Play();
         }
-        if (Input.GetKey("mouse 2"))
+        if (Input.GetKey("Fire2"))
         {
             aiming = true;
         }
-       /* else
+        else
         {
             aiming = false;
         }
-        */
+        
     }
 
     public void Fire()
