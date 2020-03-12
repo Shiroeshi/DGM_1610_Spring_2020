@@ -1081,6 +1081,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1286462586}
   - component: {fileID: 1286462585}
+  - component: {fileID: 1286462587}
   m_Layer: 0
   m_Name: Game Manager
   m_TagString: Untagged
@@ -1114,6 +1115,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1286462587
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1286462584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28b73618301df7749851e1ec079b3868, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  numEnemies: 5
+  cupsInTheSink: 10
 --- !u!1 &1299129654
 GameObject:
   m_ObjectHideFlags: 0
@@ -1419,6 +1434,12 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8528787203185991030, guid: f479986edeb3cd84eb73f1a86e020c63,
+        type: 3}
+      propertyPath: projectilePrefab
+      value: 
+      objectReference: {fileID: 7319999680671475091, guid: eaebc42b9823d6a41b2b5f2911d23221,
+        type: 3}
     - target: {fileID: 8528787203185991031, guid: f479986edeb3cd84eb73f1a86e020c63,
         type: 3}
       propertyPath: m_IsKinematic
