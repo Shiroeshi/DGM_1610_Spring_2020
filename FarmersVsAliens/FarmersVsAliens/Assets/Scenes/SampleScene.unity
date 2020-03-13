@@ -1296,7 +1296,7 @@ GameObject:
   - component: {fileID: 1500314067}
   - component: {fileID: 1500314066}
   m_Layer: 0
-  m_Name: AutoSpawner
+  m_Name: Timed Spawner
   m_TagString: Untagged
   m_Icon: {fileID: 8418204508859773708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -1314,10 +1314,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bea4255aa8e7574daaa6fdc17905117, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefabs:
-  - {fileID: 4631605967916482272, guid: 36a558a71f2756d45abc04d1e7bdb45b, type: 3}
-  enemyIndex: 0
-  time: 1
+  spawnee: {fileID: 4631605967916482272, guid: 36a558a71f2756d45abc04d1e7bdb45b, type: 3}
+  stopSpawning: 0
+  spawnTime: 1
+  spawnDelay: 3
 --- !u!4 &1500314067
 Transform:
   m_ObjectHideFlags: 0
