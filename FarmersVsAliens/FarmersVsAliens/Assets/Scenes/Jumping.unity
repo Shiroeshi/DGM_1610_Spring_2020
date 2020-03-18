@@ -252,6 +252,22 @@ MonoBehaviour:
   RecoilRotationAim: {x: 10, y: 4, z: 6}
   RecoilKickBackAim: {x: 0.015, y: 0, z: -0.2}
   aiming: 0
+--- !u!114 &76042192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 76042188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5cea0b40234b95747a4b9c6258a6136d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BulletFireRate: 0.1
+  projectilePrefab: {fileID: 7319999680671475091, guid: eaebc42b9823d6a41b2b5f2911d23221,
+    type: 3}
+  NumberofBullets: 3
 --- !u!1 &171139923
 GameObject:
   m_ObjectHideFlags: 0

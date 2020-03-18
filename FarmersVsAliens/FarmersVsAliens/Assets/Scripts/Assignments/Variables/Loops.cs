@@ -36,7 +36,7 @@ public class Loops : MonoBehaviour
         string[] strings = new string[3]; // These loops cannot repeat infinitely since it only does it for as many items are in the array
 
         strings[0] = "First string";
-        strings[0] = "Second string";
+        strings[1] = "Second string";
         strings[2] = "Third string";
 
         foreach (string item in strings)
