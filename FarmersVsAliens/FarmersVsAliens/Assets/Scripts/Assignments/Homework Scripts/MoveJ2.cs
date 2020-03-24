@@ -17,6 +17,7 @@ public class MoveJ2 : MonoBehaviour
     public float power = 500.0f;
     public float accel = 10f;
     public bool isGrounded;
+    private bool sprint;
     
 
 
@@ -41,6 +42,18 @@ public class MoveJ2 : MonoBehaviour
             GetComponent<Rigidbody>().AddForce(jumpVector, ForceMode.VelocityChange);
 
            //  currentVelocity = currentVelocity + (accelRate * Time.deltaTime);
+        }
+
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            speed * 2f;
+            bool sprint = true;
+        }
+
+        if (Input.GetKeyDown(KeyCode.LeftShift) && sprint)
+        {
+            speed / 2f;
+            bool sprint = false;
         }
 
         currentVelocity = Mathf.Clamp(currentVelocity, initialVelocity, finalVelocity);

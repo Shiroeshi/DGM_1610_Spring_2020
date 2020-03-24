@@ -24,11 +24,11 @@ public class CameraPew : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown("Fire1"))
+        if (Input.GetKeyDown("mouse 0"))
         {
             Fire();
         }   
-        if (Input.GetButtonDown("Fire2"))
+        if (Input.GetButtonDown("mouse 1"))
         {
             aiming = true;
         }
