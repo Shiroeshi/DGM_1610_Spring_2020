@@ -19,24 +19,24 @@ public class GravitySwitch : MonoBehaviour
     void Update()
     {
         if (gravityList.Length < 5) { Debug.Log("gravity List is has to be more or exactly at 5"); return; }
-        if (Input.KeyKeyDown("Y"))
+        if (Input.GetKeyDown("Y"))
          {
             //Restore
             Physics.gravity = gravityList[0];
         }
-        if (Input.KeyKeyDown("U"))
+        if (Input.GetKeyDown("U"))
         {
             Physics.gravity = gravityList[1];
         }
-        if (Input.KeyKeyDown("I"))
+        if (Input.GetKeyDown("I"))
         {
             Physics.gravity = gravityList[2];
         }
-        if (Input.KeyKeyDown("O"))
+        if (Input.GetKeyDown("O"))
         {
             Physics.gravity = gravityList[3];
         }
-        if (Input.KeyKeyDown("P"))
+        if (Input.GetKeyDown("P"))
         {
             Physics.gravity = gravityList[4];
         }

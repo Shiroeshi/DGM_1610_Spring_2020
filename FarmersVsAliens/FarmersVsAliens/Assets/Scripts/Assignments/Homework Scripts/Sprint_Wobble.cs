@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class Sprint_Wobble : MonoBehaviour
 {
+    public float duration;
+    public float magnitude;
+    public Vector3 originalPosition;
+
     // Start is called before the first frame update
     void Start()
     {

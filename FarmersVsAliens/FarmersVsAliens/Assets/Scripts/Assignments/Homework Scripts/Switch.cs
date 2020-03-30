@@ -5,7 +5,7 @@ using UnityEngine;
 public class Switch : MonoBehaviour
 {
     public string goodFriends;
-
+    public int starts;
 
     // Start is called before the first frame update
     void Start()

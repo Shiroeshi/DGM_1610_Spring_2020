@@ -46,14 +46,14 @@ public class MoveJ2 : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
-            speed * 2f;
-            bool sprint = true;
+            speed = speed * 2f;
+            sprint = true;
         }
 
         if (Input.GetKeyDown(KeyCode.LeftShift) && sprint)
         {
-            speed / 2f;
-            bool sprint = false;
+            speed = speed / 2f;
+            sprint = false;
         }
 
         currentVelocity = Mathf.Clamp(currentVelocity, initialVelocity, finalVelocity);
