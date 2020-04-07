@@ -12,7 +12,7 @@ public class PMovement : MonoBehaviour
     [Header("Character Rotation")]
     private float xRotation;
     private float sensitivity = 50f;
-    private float senseMultiplier = 1f;
+    private float sensMultiplier = 1f;
 
     [Header("Movement")]
     public float moveSpeed = 4500;
