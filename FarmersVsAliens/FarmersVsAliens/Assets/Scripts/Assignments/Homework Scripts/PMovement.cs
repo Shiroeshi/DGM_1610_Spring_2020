@@ -6,7 +6,7 @@ public class PMovement : MonoBehaviour
     [Header("Input variables")]
     public Transform playerCam;
     public Transform orientation;
-
+    
     private Rigidbody rb;
 
     [Header("Character Rotation")]
@@ -24,12 +24,6 @@ public class PMovement : MonoBehaviour
     private float threshold = 0.01f;
     public float maxSlopeAngle = 35f;
 
-    [Header("Crounch and Slide")]
-    private Vector3 crouchScale = new Vector3(1, 0.5f, 1);
-    private Vector3 playerScale;
-    public float slideForce = 400;
-    public float slideCounterMovement = 0.2f;
-
     [Header("Jumping")]
     private bool jumpReady = true;
     private float jumpCooldown = 0.25f;
@@ -37,11 +31,7 @@ public class PMovement : MonoBehaviour
 
     [Header("Player Inputs")]
     private float x, y;
-    private bool jumping, sprinting, crouching;
-
-    [Header("More sliding stuff")]
-    private Vector3 normalVector = Vector3.up;
-    private Vector3 wallNormalVector;
+    private bool jumping, sprinting;
 
     // On start
     private void Awake()
@@ -52,7 +42,6 @@ public class PMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        playerScale = transform.localScale;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
@@ -74,34 +63,14 @@ public class PMovement : MonoBehaviour
     {
         x = Input.GetAxisRaw("Horizontal");
         y = Input.GetAxisRaw("Vertical");
-        jumping = Input.GetKeyDown("Jump");
-        crouching = Input.GetKey(KeyCode.LeftControl);
+        jumping = Input.GetKey("space");
 
-        // This'll start crouching when pressed
-        if (Input.GetKeyDown(KeyCode.LeftControl))
-            StartCrouch();
-        if (Input.GetKeyUp(KeyCode.LeftControl))
-            StopCrouch();
+        // This'll start sprint when pressed
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+            StartSprint();
+        if (Input.GetKeyUp(KeyCode.LeftShift))
+            StopSprint();
     }
-
-    // This occurs when crouch begins
-    private void StartCrouch()
-    {
-        transform.localScale = crouchScale;
-        transform.position = new Vector3(transform.position.x, transform.position.y - 0.5f, transform.position.z); //crouching inhibits movement but amplifies when sliding
-        if (rb.velocity.magnitude > 0.5f)
-        {
-            rb.AddForce(orientation.transform.forward * slideForce);
-        }
-    }
-
-    // This will bring you back to standing
-    private void StopCrouch()
-    {
-        transform.localScale = playerScale;
-        transform.position = new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z);
-    }
-
     // Tricky movement modifieers for certain situations
     private void Movement()
     {
@@ -112,21 +81,11 @@ public class PMovement : MonoBehaviour
         Vector2 mag = FindVelRelativeToLook();
         float xMag = mag.x, yMag = mag.y;
 
-        // Countersliding
-        CounterMovement(x, y, mag);
-
         // Will jump when available
         if (jumpReady && jumping) Jump();
 
         // Max run speed
         float maxSpeed = this.maxSpeed;
-
-        // Keep player attached to slope when going down while crouching
-        if (crouching && grounded && jumpReady)
-        {
-            rb.AddForce(Vector3.down * Time.deltaTime * 3000);
-            return;
-        }
 
         // If speed is past the max, this'll throttle it down
         if (x > 0 && xMag > maxSpeed) x = 0;
@@ -144,9 +103,6 @@ public class PMovement : MonoBehaviour
             multiplierV = 0.5f;
         }
 
-        // Sliding Movement
-        if (grounded && crouching) multiplierV = 0f;
-
         // Actual force to add movement
         rb.AddForce(orientation.transform.forward * y * moveSpeed * Time.deltaTime * multiplier * multiplierV);
         rb.AddForce(orientation.transform.right * x * moveSpeed * Time.deltaTime * multiplier);
@@ -161,7 +117,6 @@ public class PMovement : MonoBehaviour
 
             // Higher jumps
             rb.AddForce(Vector2.up * jumpForce * 1.5f);
-            rb.AddForce(normalVector * jumpForce * 0.5f);
 
             //Dont let them jump again once falling
             Vector3 vel = rb.velocity;
@@ -198,31 +153,7 @@ public class PMovement : MonoBehaviour
         orientation.transform.localRotation = Quaternion.Euler(0, desiredX, 0);
     }
 
-    private void CounterMovement(float x, float y, Vector2 mag)
-    {
-        if (!grounded || jumping) return;
-
-        //Slow down sliding
-        if (crouching)
-        {
-            rb.AddForce(moveSpeed * Time.deltaTime * -rb.velocity.normalized * slideCounterMovement);
-            return;
-        }
-
-        //Limit diagonal running. This will also cause a full stop if sliding fast and un-crouching, so not optimal.
-        if (Mathf.Sqrt((Mathf.Pow(rb.velocity.x, 2) + Mathf.Pow(rb.velocity.z, 2))) > maxSpeed)
-        {
-            float fallspeed = rb.velocity.y;
-            Vector3 n = rb.velocity.normalized * maxSpeed;
-            rb.velocity = new Vector3(n.x, fallspeed, n.z);
-        }
-    }
-
-    /// <summary>
     /// Find the velocity relative to where the player is looking
-    /// Useful for vectors calculations regarding movement and limiting movement
-    /// </summary>
-    /// <returns></returns>
     public Vector2 FindVelRelativeToLook()
     {
         float lookAngle = orientation.transform.eulerAngles.y;
@@ -246,9 +177,7 @@ public class PMovement : MonoBehaviour
 
     private bool cancellingGrounded;
 
-    /// <summary>
     /// Handle ground detection
-    /// </summary>
     private void OnCollisionStay(Collision other)
     {
         //Make sure we are only checking for walkable layers
@@ -259,28 +188,28 @@ public class PMovement : MonoBehaviour
         for (int i = 0; i < other.contactCount; i++)
         {
             Vector3 normal = other.contacts[i].normal;
-            //FLOOR
             if (IsFloor(normal))
             {
                 grounded = true;
                 cancellingGrounded = false;
-                normalVector = normal;
                 CancelInvoke(nameof(StopGrounded));
             }
-        }
-
-        //Invoke ground/wall cancel, since we can't check normals with CollisionExit
-        float delay = 3f;
-        if (!cancellingGrounded)
-        {
-            cancellingGrounded = true;
-            Invoke(nameof(StopGrounded), Time.deltaTime * delay);
         }
     }
 
     private void StopGrounded()
     {
         grounded = false;
+    }
+
+    private void StartSprint()
+    {
+
+    }
+
+    private void StopSprint()
+    {
+
     }
 
 }
